@@ -1,0 +1,218 @@
+net
+{
+	propagationenginegenerator1791944048146838126L = "edu.ucla.belief.approx.BeliefPropagationSettings@581eedc";
+	recoveryenginegenerator6944530267470113528l = "edu.ucla.util.SettingsImpl@11800ad5";
+	node_size = (130.0 55.0);
+}
+
+node Sex
+{
+	states = ("Male" "Female" );
+	position = (46 -287);
+	diagnosistype = "AUXILIARY";
+	DSLxSUBMODEL = "Root Submodel";
+	ismapvariable = "false";
+	ID = "variable2";
+	label = "Sex";
+	DSLxEXTRA_DEFINITIONxDIAGNOSIS_TYPE = "AUXILIARY";
+	excludepolicy = "include whole CPT";
+}
+node SexCausal
+{
+	states = ("causal" "nocausal" );
+	position = (166 -479);
+	diagnosistype = "AUXILIARY";
+	DSLxSUBMODEL = "Root Submodel";
+	ismapvariable = "false";
+	ID = "variable7";
+	label = "SexCausal";
+	DSLxEXTRA_DEFINITIONxDIAGNOSIS_TYPE = "AUXILIARY";
+	excludepolicy = "include whole CPT";
+}
+node Over60
+{
+	states = ("older" "younger" );
+	position = (1089 -259);
+	diagnosistype = "AUXILIARY";
+	DSLxSUBMODEL = "Root Submodel";
+	ismapvariable = "false";
+	ID = "variable3";
+	label = "Over60";
+	DSLxEXTRA_DEFINITIONxDIAGNOSIS_TYPE = "AUXILIARY";
+	excludepolicy = "include whole CPT";
+}
+node BMI
+{
+	states = ("high" "nothigh" );
+	position = (566 -384);
+	diagnosistype = "AUXILIARY";
+	DSLxSUBMODEL = "Root Submodel";
+	ismapvariable = "false";
+	ID = "variable4";
+	label = "BMI";
+	DSLxEXTRA_DEFINITIONxDIAGNOSIS_TYPE = "AUXILIARY";
+	excludepolicy = "include whole CPT";
+}
+node SNP1causal
+{
+	states = ("causal" "nocausal" );
+	position = (297 -279);
+	iscptvalid = "true";
+	diagnosistype = "AUXILIARY";
+	DSLxSUBMODEL = "Root Submodel";
+	ismapvariable = "true";
+	ID = "variable2";
+	label = "SNP1causal";
+	DSLxEXTRA_DEFINITIONxDIAGNOSIS_TYPE = "AUXILIARY";
+	excludepolicy = "include whole CPT";
+}
+node BloodPressure
+{
+	states = ("high" "nothigh" );
+	position = (567 -662);
+	diagnosistype = "AUXILIARY";
+	DSLxSUBMODEL = "Root Submodel";
+	ismapvariable = "false";
+	ID = "variable9";
+	label = "BloodPressure";
+	DSLxEXTRA_DEFINITIONxDIAGNOSIS_TYPE = "AUXILIARY";
+	excludepolicy = "include whole CPT";
+}
+node SNP2causal
+{
+	states = ("causal" "nocausal" );
+	position = (773 -249);
+	diagnosistype = "AUXILIARY";
+	DSLxSUBMODEL = "Root Submodel";
+	ismapvariable = "false";
+	ID = "variable3";
+	label = "SNP2causal";
+	DSLxEXTRA_DEFINITIONxDIAGNOSIS_TYPE = "AUXILIARY";
+	excludepolicy = "include whole CPT";
+}
+node AgeCausal
+{
+	states = ("causal" "nocausal" );
+	position = (925 -409);
+	diagnosistype = "AUXILIARY";
+	DSLxSUBMODEL = "Root Submodel";
+	ismapvariable = "false";
+	ID = "variable6";
+	label = "AgeCausal";
+	DSLxEXTRA_DEFINITIONxDIAGNOSIS_TYPE = "AUXILIARY";
+	excludepolicy = "include whole CPT";
+}
+node HasSNP2
+{
+	states = ("has" "nohas" );
+	position = (948 -96);
+	diagnosistype = "AUXILIARY";
+	DSLxSUBMODEL = "Root Submodel";
+	ismapvariable = "false";
+	ID = "variable1";
+	label = "HasSNP2";
+	DSLxEXTRA_DEFINITIONxDIAGNOSIS_TYPE = "AUXILIARY";
+	excludepolicy = "include whole CPT";
+}
+node HasSNP1
+{
+	states = ("has" "nohas" );
+	position = (224 -81);
+	diagnosistype = "AUXILIARY";
+	DSLxSUBMODEL = "Root Submodel";
+	ismapvariable = "false";
+	ID = "variable0";
+	label = "HasSNP1";
+	DSLxEXTRA_DEFINITIONxDIAGNOSIS_TYPE = "AUXILIARY";
+	excludepolicy = "include whole CPT";
+}
+potential ( Sex | )
+{
+	data = (	0.72	0.28	);
+}
+potential ( SexCausal | Sex )
+{
+	data = ((	0.6	0.4	)
+		(	0.3	0.7	));
+}
+potential ( Over60 | )
+{
+	data = (	0.65	0.35	);
+}
+potential ( BMI | SNP1causal SNP2causal AgeCausal SexCausal )
+{
+	data = (((((	0.7	0.3	)
+		(	0.6	0.4	))
+		((	0.3	0.7	)
+		(	0.2	0.8	)))
+		(((	0.1	0.9	)
+		(	0.4	0.6	))
+		((	0.2	0.8	)
+		(	0.2	0.8	))))
+		((((	0.4	0.6	)
+		(	0.3	0.7	))
+		((	0.2	0.8	)
+		(	0.1	0.9	)))
+		(((	0.3	0.7	)
+		(	0.4	0.6	))
+		((	0.6	0.4	)
+		(	0.4	0.6	)))));
+}
+potential ( SNP1causal | HasSNP1 )
+{
+	data = ((	0.5	0.5	)
+		(	0.5	0.5	));
+}
+potential ( BloodPressure | SNP1causal SNP2causal BMI SexCausal AgeCausal )
+{
+	data = ((((((	0.92	0.08	)
+		(	0.4	0.6	))
+		((	0.9	0.1	)
+		(	0.7	0.3	)))
+		(((	0.3	0.7	)
+		(	0.8	0.2	))
+		((	0.2	0.8	)
+		(	0.1	0.9	))))
+		((((	0.4	0.6	)
+		(	0.6	0.4	))
+		((	0.75	0.25	)
+		(	0.33	0.67	)))
+		(((	0.25	0.75	)
+		(	0.1	0.9	))
+		((	0.6	0.4	)
+		(	0.35	0.65	)))))
+		(((((	0.54	0.46	)
+		(	0.72	0.28	))
+		((	0.87	0.13	)
+		(	0.11	0.89	)))
+		(((	0.23	0.77	)
+		(	0.47	0.53	))
+		((	0.56	0.44	)
+		(	0.83	0.17	))))
+		((((	0.67	0.33	)
+		(	0.43	0.57	))
+		((	0.23	0.77	)
+		(	0.36	0.64	)))
+		(((	0.54	0.46	)
+		(	0.18	0.82	))
+		((	0.15	0.85	)
+		(	0.4	0.6	))))));
+}
+potential ( SNP2causal | HasSNP2 )
+{
+	data = ((	0.4	0.6	)
+		(	0.4	0.6	));
+}
+potential ( AgeCausal | Over60 )
+{
+	data = ((	0.8	0.2	)
+		(	0.3	0.7	));
+}
+potential ( HasSNP2 | )
+{
+	data = (	0.9	0.1	);
+}
+potential ( HasSNP1 | )
+{
+	data = (	0.3	0.7	);
+}
